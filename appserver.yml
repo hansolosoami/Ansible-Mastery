@@ -1,0 +1,10 @@
+---
+ - hosts: nodes
+   remote_user: admin
+   become: true
+   tasks: 
+    - name: intalling lynx on the app server 
+      yum: 
+       name: httpd
+       state: latest 
+       use_backend: yum

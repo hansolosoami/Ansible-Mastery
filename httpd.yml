@@ -1,0 +1,52 @@
+---
+ - hosts: all
+   remote_user: admin
+   become: true
+   #ignore_error: yes
+   tasks:
+    - name: installing httpd and firewalld
+      yum: 
+       name: 
+        - httpd
+        - firewalld
+       state: latest
+
+    - name: starting firewalld service
+      service: 
+       name: firewalld
+       state: started
+       enabled: yes     
+
+    - name: writing adhoc 
+      copy: 
+       content: "adhoc networks" 
+       dest: /var/www/html/index.html
+    
+    - name: restarting httpd service
+      service: 
+       name: httpd
+       state: restarted
+       enabled: yes
+
+    - name:
+      firewalld: 
+       service: http
+       state: enabled
+       permanent: true
+       immediate: true
+
+
+    - name: writing adhoc 
+      lineinfile: 
+       line: "hello world from {{ ansible_hostname }}" 
+       path: /var/www/html/index.html
+
+
+ - hosts: all
+   become: true
+   tasks:
+    - name: test webserver 
+      uri:
+       url: http://node1.example.com
+       status_code: 200
+       
