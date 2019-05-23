@@ -1,0 +1,11 @@
+---
+ - hosts: all
+   remote_user: admin   
+   become: true 
+   gather_facts: n
+   vars: 
+    playbook_version: 0.1b
+   vars_files: 
+    conf/webdefaults.yml
+    conf/webdefaults.yml
+   

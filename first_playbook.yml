@@ -1,0 +1,18 @@
+---
+ - hosts: all
+   remote_user: admin   
+   become: true 
+   gather_facts: no
+   vars: 
+    playbook_version: 0.1b
+   vars_files: 
+    - conf/copyright.yml
+    - conf/webdefaults.yml
+   vars_prompt: 
+    - name: web_domain 
+      prompt: Web Domain
+   tasks:
+    - name:
+      yum: 
+       name: httpd
+       state: latest 

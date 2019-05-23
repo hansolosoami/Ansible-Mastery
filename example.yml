@@ -1,0 +1,28 @@
+---
+ - hosts: all
+   gather_facts: false
+   become: true
+   vars:
+    named_lists:
+     item1: hey 
+     item2: anfk
+     item3: ajfs
+    dict: 
+     dict_key: this is the dictionary value
+   tasks: 
+    - name: testing the dictionary 
+      debug: 
+       msg: "{{ dict }}"
+    - name: testing the dictionary again 
+      debug: 
+       msg: "{{ dict.dict_key }}"
+    - name: testing the items 
+      debug: 
+       msg: "{{ named_lists.item2 }}"
+    - name: testing the items again 
+      debug: 
+       msg: "{{ named_lists.item1 }}"
+    - name: testing the item again again 
+      debug: 
+       msg: "{{ named_lists.item3 }}" 
+
