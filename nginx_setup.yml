@@ -1,0 +1,38 @@
+---
+ - hosts: all 
+   remote_user: admin 
+   become: true
+   tasks: 
+
+    - name: yum repo
+      yum_repository:
+       name: epel
+       description: EPEL YUM repo
+       baseurl: http://nginx.org/packages/mainline/rhel/7/$basearch/
+       enabled: 1
+       gpgcheck: no 
+
+    - name: EPEL installation for web server 
+      yum: 
+       name: epel-release
+       state: latest
+       update_cache: yes
+      when: ansible_distribution == 'RedHat'
+
+    - name: updating yum
+      command: sudo yum update -y
+
+    - name: nginx web server 
+      yum: 
+       name: nginx*
+       state: latest
+       update_cache: yes
+      when: ansible_distribution == 'RedHat'
+
+    - name: starting service of it
+      service:
+       name: nginx
+       state: started
+       enabled: yes
+       
+         

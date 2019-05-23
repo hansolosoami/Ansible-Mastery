@@ -1,0 +1,10 @@
+---
+ - hosts: all
+   become: true
+   remote_user: admin
+   tasks:
+    - name: template example
+      template: 
+       src: template.j2
+       dest: "/tmp/{{ ansible_hostname }}_temp.txt"  
+       trim_blocks: true
