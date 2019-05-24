@@ -1,0 +1,22 @@
+---
+ - hosts: all
+   remote_user: admin 
+   become: true
+   tasks:
+    - name: adding the users
+      user: 
+       name: "{{ item }}" 
+      with_items: 
+       - jake
+       - helen 
+       - mani  
+       - akaibull
+
+    - name: adding the users
+      user: 
+       name: "{{ item }}"
+       state: absent 
+      with_items: 
+       - jake
+       - helen 
+       - mani  

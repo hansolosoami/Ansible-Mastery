@@ -1,0 +1,16 @@
+---
+ - hosts: all
+   remote_user: admin 
+   become: true
+   tasks:
+    - name: Exploring register
+      command: hostname -s
+      register: host_out
+     
+    - name: show the output of the register module used
+      debug: 
+       var: host_out
+
+    - name: show the output of the register module used
+      debug:
+       var: host_out.stdout

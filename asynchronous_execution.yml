@@ -1,0 +1,49 @@
+---
+ - hosts: all
+   remote_user: admin 
+   become: true
+   tasks: 
+    - name: task1
+      command: /bin/sleep 5
+      when: ansible_distribution == 'Centos'
+      async: 10
+      poll: 0
+      register: result1
+
+    - name: task2
+      command: /bin/sleep 5
+      when: ansible_distribution == 'Ubuntu'
+      async: 10
+      poll: 0 
+      register: result2
+
+    - name: task3
+      command: /bin/sleep 5
+      when: ansible_distribution == 'RedHat'
+      async: 10
+      poll: 0 
+      register: result3
+
+    - name: task4
+      command: /bin/sleep 5
+      when: ansible_distribution == 'redhat'
+      async: 10
+      poll: 0
+      register: result4
+
+    - name: task5
+      command: /bin/sleep 5
+      when: ansible_distribution == 'ReDhAt'
+      async: 10
+      poll: 0 
+      register: result5
+
+    - name: Show registered context
+      debug:
+        var: result1
+
+    - name: Show registered context as jinja2
+      debug:
+        msg: "{{ result1 }}"
+
+
