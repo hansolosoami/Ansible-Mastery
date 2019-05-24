@@ -1,0 +1,24 @@
+---
+ - hosts: all
+   remote_user: admin 
+   become: true
+   tasks:
+    - name: coping files 
+      copy:
+       src: example.yml
+       dest: /tmp/test2.txt
+    
+    - name: coping files 
+      copy:
+       src: set_fact.yml
+       dest: /tmp/test3.txt
+
+    - name: assembling two or more files into one
+      assemble: 
+       src: /tmp/test1
+       dest: /tmp/test3.txt
+    
+    - name: assembling two or more files into one
+      assemble: 
+       src: /tmp/test1
+       dest: /tmp/test3.txt

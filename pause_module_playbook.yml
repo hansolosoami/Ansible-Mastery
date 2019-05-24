@@ -1,0 +1,11 @@
+---
+ - hosts: all
+   remote_user: admin
+   become: true 
+   tasks: 
+    - name: pause the playbook for 10 seconds
+      pause: 
+       seconds: 10
+       prompt: '!!!!!! SOMETHING IS HAPPENING IN THE UNIVERSE !!!!!!!'
+       echo: no
+

@@ -1,0 +1,9 @@
+---
+ - hosts: all
+   remote_user: admin 
+   become: true
+   tasks: 
+    - name: waiting for a port to open in web server 
+      wait_for:
+       port: 80
+       timeout: 10 

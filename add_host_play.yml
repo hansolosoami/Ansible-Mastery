@@ -1,0 +1,17 @@
+---
+ - hosts: all
+   remote_user: admin 
+   become: true
+   tasks: 
+    - name: Add host to multiple groups
+      add_host:
+       name: node1
+       groups:
+        - adhocgroup1
+        - adhocgroup2
+
+
+ - hosts: adhocgroup1
+   tasks: 
+    - name: testing by ping
+      ping:

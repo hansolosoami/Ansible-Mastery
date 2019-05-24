@@ -1,0 +1,12 @@
+---
+ - hosts: all 
+   remote_user: admin 
+   become: true
+   tasks: 
+    - name: set a fact 
+      set_fact: 
+       our_fact: Ansible totally rocks!!!!!!!!!!
+    
+    - name: show custom facts
+      debug: 
+       msg: "{{ our_fact }}"
